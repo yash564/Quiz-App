@@ -35,6 +35,7 @@ const Section = () => {
           className={classes.video}
           autoPlay
           loop
+          muted
         >
             <source src={Video} type="video/mp4"></source>
         </video>
