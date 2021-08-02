@@ -38,8 +38,8 @@ const Boxes = () => {
       <Typography
         style={{
           textAlign: "center",
-          marginBottom: "20px",
-          marginTop: "20px",
+          marginBottom: "50px",
+          marginTop: "50px",
           fontFamily: "cursive",
         }}
         variant="h3"

@@ -1,6 +1,7 @@
 import Homepage from "./Components/Homepage";
 import SignUp from "./Components/SignUp";
 import Login from "./Components/Login";
+import { Subjects,Subfinish } from "./Components/Subjects";
 import {Computer,Computerscore} from "./Components/Computer";
 import {GK,Gkscore} from "./Components/GK";
 import {Maths,Mathsscore} from "./Components/Maths";
@@ -28,6 +29,8 @@ function App() {
             <Route path="/mathscore" component={Mathsscore} exact></Route>
             <Route path="/computerscore" component={Computerscore} exact></Route>
             <Route path="/gkscore" component={Gkscore} exact></Route>
+            <Route path="/subjects" component={Subjects} exact></Route>
+            <Route path="/subfinish" component={Subfinish} exact></Route>
           </Switch>
         </div>
       </Router>

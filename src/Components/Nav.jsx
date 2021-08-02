@@ -48,7 +48,7 @@ const Nav = () => {
     drawerIcon: {
       display: "flex",
       alignItems: "center",
-      justifyContent:"center"
+      justifyContent: "center",
     },
     linkStyle: {
       textDecoration: "none",
@@ -66,10 +66,10 @@ const Nav = () => {
     setOpen(false);
   };
 
-  const handleLogOut=async()=>{
+  const handleLogOut = async () => {
     await signOut();
     console.log("LogOut");
-  }
+  };
 
   return (
     <div
@@ -87,7 +87,11 @@ const Nav = () => {
           >
             <MenuIcon></MenuIcon>
           </IconButton>
-          <Typography variant="h6">Quiz App</Typography>
+          <Typography variant="h6">
+            <Link to="/" className={classes.linkStyle}>
+              Quiz App
+            </Link>
+          </Typography>
           <div className={classes.grow}></div>
           <Button
             className={classes.menubutton}
@@ -120,7 +124,7 @@ const Nav = () => {
                     <MenuItem onClick={popupState.close}>
                       <Link
                         to="/login"
-                        style={{ textDecoration:"none", color:"black" }}
+                        style={{ textDecoration: "none", color: "black" }}
                       >
                         Log In
                       </Link>
