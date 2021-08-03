@@ -120,7 +120,7 @@ const Profile = () => {
   return (
     <div>
       <Nav></Nav>
-      <div style={{ background: "#5d6cd7", position: "relative" }}>
+      <div style={{ background: "#5d6cd7", position: "relative", height:"100vh" }}>
         <div className={classes.profileDiv}>
           <Avatar
             src={updatedProfile ? updatedProfile : profileImage}

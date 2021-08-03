@@ -68,7 +68,6 @@ const Nav = (props) => {
 
   const handleLogOut = async () => {
     await signOut();
-    console.log("LogOut");
   };
 
   return (
@@ -125,10 +124,13 @@ const Nav = (props) => {
                       </Link>
                     </MenuItem>
                   ) : (
-                    <MenuItem onClick={popupState.close} style={{display:"none"}}>
+                    <MenuItem
+                      onClick={popupState.close}
+                      style={{ display: "none" }}
+                    >
                       <Link
                         to="/profile"
-                        style={{ textDecoration: "none", color: "black"}}
+                        style={{ textDecoration: "none", color: "black" }}
                       >
                         Profile
                       </Link>
@@ -136,7 +138,14 @@ const Nav = (props) => {
                   )}
                   {currentUser ? (
                     <MenuItem onClick={popupState.close}>
-                      <div onClick={handleLogOut}>Log Out</div>
+                      <div onClick={handleLogOut}>
+                        <Link
+                          to="/"
+                          style={{ textDecoration: "none", color: "black" }}
+                        >
+                          Log Out
+                        </Link>
+                      </div>
                     </MenuItem>
                   ) : (
                     <MenuItem onClick={popupState.close}>
@@ -165,13 +174,27 @@ const Nav = (props) => {
           <ListItemIcon className={classes.drawerIcon}>
             <PaymentOutlined></PaymentOutlined>
           </ListItemIcon>
-          <ListItemText>Pricing</ListItemText>
+          <ListItemText>
+            <Link
+              to="/pricing"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              Pricing
+            </Link>
+          </ListItemText>
         </List>
         <List className={classes.drawerContent}>
           <ListItemIcon className={classes.drawerIcon}>
             <LiveHelpOutlined></LiveHelpOutlined>
           </ListItemIcon>
-          <ListItemText>F.A.Q</ListItemText>
+          <ListItemText>
+            <Link
+              to="/help"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              F.A.Q
+            </Link>
+          </ListItemText>
         </List>
         <Divider></Divider>
         <List className={classes.drawerContent}>
@@ -179,9 +202,16 @@ const Nav = (props) => {
             <ExitToAppOutlined></ExitToAppOutlined>
           </ListItemIcon>
           {currentUser ? (
-            <ListItemText>Log Out</ListItemText>
+            <ListItemText onClick={handleLogOut}>Log Out</ListItemText>
           ) : (
-            <ListItemText>Log In</ListItemText>
+            <ListItemText>
+              <Link
+                to="/login"
+                style={{ textDecoration: "none", color: "black" }}
+              >
+                Log In
+              </Link>
+            </ListItemText>
           )}
         </List>
         <Divider></Divider>

@@ -10,6 +10,8 @@ import {Demo, Finish} from "./Components/Demo";
 import Profile from "./Components/Profile";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Authprovider } from "./Context/Authprovider";
+import Pricing from "./Components/Pricing";
+import Help from "./Components/Help";
 
 function App() {
   return (
@@ -33,6 +35,8 @@ function App() {
             <Route path="/subjects" component={Subjects} exact></Route>
             <Route path="/subfinish" component={Subfinish} exact></Route>
             <Route path="/profile" component={Profile} exact></Route>
+            <Route path="/pricing" component={Pricing}></Route>
+            <Route path="/help" component={Help}></Route>
           </Switch>
         </div>
       </Router>

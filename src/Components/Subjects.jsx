@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import {
   Card,
   CardContent,
@@ -26,6 +26,7 @@ import {
 import download from "../Images/download.png";
 import Nav from "./Nav";
 import { Link, Redirect } from "react-router-dom";
+import { firebaseDB } from "../Config/firebase";
 import { AuthContext } from "../Context/Authprovider";
 import category from "./Category";
 
@@ -171,10 +172,7 @@ export const Subjects = (props) => {
                     variant="contained"
                     style={{ marginLeft: "15px" }}
                   >
-                    <Link
-                      to="/subfinish"
-                      className={classes.linkStyle}
-                    >
+                    <Link to="/subfinish" className={classes.linkStyle}>
                       Finish
                     </Link>
                   </Button>
@@ -290,6 +288,8 @@ export function Subfinish(props) {
   console.log(props);
   index = 0;
   const [open, setOpen] = useState(true);
+  const { currentUser } = useContext(AuthContext);
+
   const useStyle = makeStyles((theme) => ({
     center: {
       display: "flex",
@@ -315,7 +315,15 @@ export function Subfinish(props) {
     setOpen(true);
   };
 
-  const handleClose = () => {
+  const handleClose = async () => {
+    let doc=await firebaseDB.collection("users").doc(currentUser.uid).get();
+    let scores=doc.data().scores;
+    await firebaseDB
+      .collection("users")
+      .doc(currentUser.uid)
+      .update({
+        scores: [...scores, { marks: score, subject: name }],
+      });
     setOpen(false);
     score = 0;
     props.history.push("/");
@@ -335,11 +343,16 @@ export function Subfinish(props) {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <Typography variant="h4" style={{ textAlign: "center",marginBottom:"20px" }}>
+            <Typography
+              variant="h4"
+              style={{ textAlign: "center", marginBottom: "20px" }}
+            >
               Congratulations!!
             </Typography>
-            <Typography variant="h5" style={{textAlign:"center"}}>You Completed {name} Quiz</Typography>
-            <Typography variant="h5" style={{textAlign:"center"}}>
+            <Typography variant="h5" style={{ textAlign: "center" }}>
+              You Completed {name} Quiz
+            </Typography>
+            <Typography variant="h5" style={{ textAlign: "center" }}>
               Your Score is:- {score} out of 100
             </Typography>
             <CardMedia
