@@ -34,18 +34,17 @@ let index = 0;
 let shuffledArray = [];
 let val = "";
 let score = 0;
-let name="";
+let name = "";
 let no;
 
 export const Subjects = (props) => {
-  console.log(index);
-  let categoryName=props.location.name;
-  let arr=category.Name;
-  let cat=category.Index;
-  for(let i=0;i<arr.length;i++){
-    if(arr[i]==categoryName){
-      name=arr[i];
-      no=cat[i];
+  let categoryName = props.location.name;
+  let arr = category.Name;
+  let cat = category.Index;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] == categoryName) {
+      name = arr[i];
+      no = cat[i];
     }
   }
   const [questions, setQuestions] = useState([]);
@@ -79,13 +78,13 @@ export const Subjects = (props) => {
     setQuestion(data.results[0]);
   }, []);
 
-  String.prototype.deentitize = function(ret) {
-    ret = ret.replace(/&gt;/g, '>');
-    ret = ret.replace(/&lt;/g, '<');
+  String.prototype.deentitize = function (ret) {
+    ret = ret.replace(/&gt;/g, ">");
+    ret = ret.replace(/&lt;/g, "<");
     ret = ret.replace(/&quot;/g, '"');
     ret = ret.replace(/&apos;/g, "'");
-    ret = ret.replace(/&amp;/g, '&');
-    ret=ret.replace(/&#039;/g, "'");
+    ret = ret.replace(/&amp;/g, "&");
+    ret = ret.replace(/&#039;/g, "'");
     return ret;
   };
 
@@ -172,7 +171,10 @@ export const Subjects = (props) => {
                     variant="contained"
                     style={{ marginLeft: "15px" }}
                   >
-                    <Link to="/subfinish" className={classes.linkStyle}>
+                    <Link
+                      to="/subfinish"
+                      className={classes.linkStyle}
+                    >
                       Finish
                     </Link>
                   </Button>
@@ -232,7 +234,6 @@ export const Ques = (props) => {
   let classes = useStyle();
   val = value;
 
-
   return (
     <React.Fragment>
       <p className={classes.disp}>
@@ -251,12 +252,7 @@ export const Ques = (props) => {
             }}
           >
             {shuffledArray.map((option) => {
-              return (
-                <Options
-                  key={idx++}
-                  incorrect={option}
-                ></Options>
-              );
+              return <Options key={idx++} incorrect={option}></Options>;
             })}
           </RadioGroup>
         </FormControl>
@@ -286,13 +282,13 @@ export const Options = (props) => {
       value={String.prototype.deentitize(props.incorrect)}
       control={<Radio></Radio>}
       label={String.prototype.deentitize(props.incorrect)}
-    >
-    </FormControlLabel>
+    ></FormControlLabel>
   );
 };
 
 export function Subfinish(props) {
-  index=0;
+  console.log(props);
+  index = 0;
   const [open, setOpen] = useState(true);
   const useStyle = makeStyles((theme) => ({
     center: {
@@ -321,8 +317,8 @@ export function Subfinish(props) {
 
   const handleClose = () => {
     setOpen(false);
+    score = 0;
     props.history.push("/");
-    // index = 0;
   };
 
   return (
@@ -339,11 +335,11 @@ export function Subfinish(props) {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <Typography variant="h4" style={{ textAlign: "center" }}>
+            <Typography variant="h4" style={{ textAlign: "center",marginBottom:"20px" }}>
               Congratulations!!
             </Typography>
-            <Typography variant="h5">You Completed Demo of Quiz</Typography>
-            <Typography variant="h5">
+            <Typography variant="h5" style={{textAlign:"center"}}>You Completed {name} Quiz</Typography>
+            <Typography variant="h5" style={{textAlign:"center"}}>
               Your Score is:- {score} out of 100
             </Typography>
             <CardMedia

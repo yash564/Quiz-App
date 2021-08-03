@@ -7,6 +7,7 @@ import {GK,Gkscore} from "./Components/GK";
 import {Maths,Mathsscore} from "./Components/Maths";
 import {Science,Sciencescore} from "./Components/Science";
 import {Demo, Finish} from "./Components/Demo";
+import Profile from "./Components/Profile";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Authprovider } from "./Context/Authprovider";
 
@@ -31,6 +32,7 @@ function App() {
             <Route path="/gkscore" component={Gkscore} exact></Route>
             <Route path="/subjects" component={Subjects} exact></Route>
             <Route path="/subfinish" component={Subfinish} exact></Route>
+            <Route path="/profile" component={Profile} exact></Route>
           </Switch>
         </div>
       </Router>

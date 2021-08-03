@@ -29,7 +29,7 @@ import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 import { Redirect, Link } from "react-router-dom";
 import { AuthContext } from "../Context/Authprovider";
 
-const Nav = () => {
+const Nav = (props) => {
   const [open, setOpen] = useState(false);
   const { currentUser, signOut } = useContext(AuthContext);
 
@@ -115,7 +115,25 @@ const Nav = () => {
                   <AccountCircle></AccountCircle>
                 </IconButton>
                 <Menu {...bindMenu(popupState)}>
-                  <MenuItem onClick={popupState.close}>Profile</MenuItem>
+                  {currentUser ? (
+                    <MenuItem onClick={popupState.close}>
+                      <Link
+                        to="/profile"
+                        style={{ textDecoration: "none", color: "black" }}
+                      >
+                        Profile
+                      </Link>
+                    </MenuItem>
+                  ) : (
+                    <MenuItem onClick={popupState.close} style={{display:"none"}}>
+                      <Link
+                        to="/profile"
+                        style={{ textDecoration: "none", color: "black"}}
+                      >
+                        Profile
+                      </Link>
+                    </MenuItem>
+                  )}
                   {currentUser ? (
                     <MenuItem onClick={popupState.close}>
                       <div onClick={handleLogOut}>Log Out</div>
