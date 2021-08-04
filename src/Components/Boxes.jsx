@@ -15,7 +15,7 @@ import Dekstop from "../Images/Dekstop.jpg";
 import Gk from "../Images/Gk.jpg";
 import Science from "../Images/Science.jpg";
 import Maths from "../Images/Maths.jpg";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Boxes = () => {
   const useStyle = makeStyles({
@@ -65,7 +65,12 @@ const Boxes = () => {
             </CardContent>
             <CardActions className={classes.buttons}>
               <Button variant="contained" color="primary">
-                <Link className={classes.linkStyle} to="/computer">Start Quiz</Link>
+                <Link
+                  className={classes.linkStyle}
+                  to={{ pathname: "/subjects", name: "Computer" }}
+                >
+                  Start Quiz
+                </Link>
               </Button>
             </CardActions>
           </Card>
@@ -73,7 +78,11 @@ const Boxes = () => {
         <Grid item xs={3}>
           <Card variant="outlined">
             <CardContent>
-              <Typography variant="h5" className={classes.center} style={{fontSize:"29.14px"}}>
+              <Typography
+                variant="h5"
+                className={classes.center}
+                style={{ fontSize: "29.14px" }}
+              >
                 General Knowledge
               </Typography>
             </CardContent>
@@ -83,12 +92,18 @@ const Boxes = () => {
             ></CardMedia>
             <CardContent>
               <Typography variant="p">
-                Multiple Choice Questions (MCQs) related to Basics of General Knowledge
+                Multiple Choice Questions (MCQs) related to Basics of General
+                Knowledge
               </Typography>
             </CardContent>
             <CardActions className={classes.buttons}>
               <Button variant="contained" color="primary">
-                <Link className={classes.linkStyle} to="/gk">Start Quiz</Link>
+                <Link
+                  className={classes.linkStyle}
+                  to={{ pathname: "/subjects", name: "General Knowledge" }}
+                >
+                  Start Quiz
+                </Link>
               </Button>
             </CardActions>
           </Card>
@@ -111,7 +126,12 @@ const Boxes = () => {
             </CardContent>
             <CardActions className={classes.buttons}>
               <Button variant="contained" color="primary">
-                <Link className={classes.linkStyle} to="/science">Start Quiz</Link>
+                <Link
+                  className={classes.linkStyle}
+                  to={{ pathname: "/subjects", name: "Science and nature" }}
+                >
+                  Start Quiz
+                </Link>
               </Button>
             </CardActions>
           </Card>
@@ -135,7 +155,12 @@ const Boxes = () => {
             </CardContent>
             <CardActions className={classes.buttons}>
               <Button variant="contained" color="primary">
-                <Link className={classes.linkStyle} to="/maths">Start Quiz</Link>
+                <Link
+                  className={classes.linkStyle}
+                  to={{ pathname: "/subjects", name: "Mathematics" }}
+                >
+                  Start Quiz
+                </Link>
               </Button>
             </CardActions>
           </Card>

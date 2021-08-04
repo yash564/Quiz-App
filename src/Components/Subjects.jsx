@@ -25,6 +25,7 @@ import {
 } from "@material-ui/core";
 import download from "../Images/download.png";
 import Nav from "./Nav";
+import SignUp from "./SignUp";
 import { Link, Redirect } from "react-router-dom";
 import { firebaseDB } from "../Config/firebase";
 import { AuthContext } from "../Context/Authprovider";
@@ -50,6 +51,7 @@ export const Subjects = (props) => {
   }
   const [questions, setQuestions] = useState([]);
   const [question, setQuestion] = useState({});
+  const { currentUser } = useContext(AuthContext);
 
   const useStyle = makeStyles({
     color: {
@@ -140,66 +142,72 @@ export const Subjects = (props) => {
 
   return (
     <React.Fragment>
-      <Nav></Nav>
-      <div className={classes.color}>
-        <div className={classes.center}>
-          <Card>
-            <CardContent>
-              <Typography variant="h5" style={{ textAlign: "center" }}>
-                Questions
-              </Typography>
-            </CardContent>
-            <Divider></Divider>
-            <CardContent>
-              <Ques id={question}></Ques>
-            </CardContent>
-            <CardContent>
-              {index == 9 ? (
-                <div>
-                  <Button color="primary" variant="contained" disabled>
-                    Next
-                  </Button>
-                  <Button
-                    color="secondary"
-                    variant="contained"
-                    style={{ marginLeft: "15px" }}
-                    onClick={handleSubmit}
-                  >
-                    Submit
-                  </Button>
-                  <Button
-                    color="secondary"
-                    variant="contained"
-                    style={{ marginLeft: "15px" }}
-                  >
-                    <Link to="/subfinish" className={classes.linkStyle}>
-                      Finish
-                    </Link>
-                  </Button>
-                </div>
-              ) : (
-                <div>
-                  <Button
-                    color="primary"
-                    variant="contained"
-                    onClick={handleNextQuestion}
-                  >
-                    Next
-                  </Button>
-                  <Button
-                    color="secondary"
-                    variant="contained"
-                    style={{ marginLeft: "15px" }}
-                    onClick={handleSubmit}
-                  >
-                    Submit
-                  </Button>
-                </div>
-              )}
-            </CardContent>
-          </Card>
+      {currentUser ? (
+        <div>
+          <Nav></Nav>
+          <div className={classes.color}>
+            <div className={classes.center}>
+              <Card>
+                <CardContent>
+                  <Typography variant="h5" style={{ textAlign: "center" }}>
+                    Questions
+                  </Typography>
+                </CardContent>
+                <Divider></Divider>
+                <CardContent>
+                  <Ques id={question}></Ques>
+                </CardContent>
+                <CardContent>
+                  {index == 9 ? (
+                    <div>
+                      <Button color="primary" variant="contained" disabled>
+                        Next
+                      </Button>
+                      <Button
+                        color="secondary"
+                        variant="contained"
+                        style={{ marginLeft: "15px" }}
+                        onClick={handleSubmit}
+                      >
+                        Submit
+                      </Button>
+                      <Button
+                        color="secondary"
+                        variant="contained"
+                        style={{ marginLeft: "15px" }}
+                      >
+                        <Link to="/subfinish" className={classes.linkStyle}>
+                          Finish
+                        </Link>
+                      </Button>
+                    </div>
+                  ) : (
+                    <div>
+                      <Button
+                        color="primary"
+                        variant="contained"
+                        onClick={handleNextQuestion}
+                      >
+                        Next
+                      </Button>
+                      <Button
+                        color="secondary"
+                        variant="contained"
+                        style={{ marginLeft: "15px" }}
+                        onClick={handleSubmit}
+                      >
+                        Submit
+                      </Button>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            </div>
+          </div>
         </div>
-      </div>
+      ) : (
+        <SignUp></SignUp>
+      )}
     </React.Fragment>
   );
 };
@@ -316,13 +324,20 @@ export function Subfinish(props) {
   };
 
   const handleClose = async () => {
-    let doc=await firebaseDB.collection("users").doc(currentUser.uid).get();
-    let scores=doc.data().scores;
+    let doc = await firebaseDB.collection("users").doc(currentUser.uid).get();
+    let scores = doc.data().scores;
+    let newArr=[];
+    for(let i=0;i<scores.length;i++){
+      if(scores[i].subject==name){
+      }else{
+        newArr.push(scores[i]);
+      }
+    }
     await firebaseDB
       .collection("users")
       .doc(currentUser.uid)
       .update({
-        scores: [...scores, { marks: score, subject: name }],
+        scores: [...newArr, { marks: score, subject: name }],
       });
     setOpen(false);
     score = 0;
