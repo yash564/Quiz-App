@@ -141,7 +141,7 @@ const Profile = () => {
                 fontSize: "26px",
                 position: "absolute",
                 top: "20px",
-                left: "54.2vw",
+                left: "53.5vw",
               }}
             ></AddAPhotoIcon>
             <input
@@ -180,7 +180,7 @@ const Profile = () => {
           </Typography>
         </div>
         <div className={classes.score}>
-          {score ? (
+          {score.length>0 ? (
             <TableContainer component={Paper} style={{ width: "30vw" }}>
               <Table>
                 <TableHead>
@@ -232,4 +232,3 @@ const Profile = () => {
 
 export default Profile;
 
-// class="fas fa-plus-circle"

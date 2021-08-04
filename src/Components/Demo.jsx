@@ -129,72 +129,66 @@ export const Demo = () => {
 
   return (
     <React.Fragment>
-      {currentUser ? (
-        <div>
-          <Nav></Nav>
-          <div className={classes.color}>
-            <div className={classes.center}>
-              <Card>
-                <CardContent>
-                  <Typography variant="h5" style={{ textAlign: "center" }}>
-                    Questions
-                  </Typography>
-                </CardContent>
-                <Divider></Divider>
-                <CardContent>
-                  <Ques id={question}></Ques>
-                </CardContent>
-                <CardContent>
-                  {index == 9 ? (
-                    <div>
-                      <Button color="primary" variant="contained" disabled>
-                        Next
-                      </Button>
-                      <Button
-                        color="secondary"
-                        variant="contained"
-                        style={{ marginLeft: "15px" }}
-                        onClick={handleSubmit}
-                      >
-                        Submit
-                      </Button>
-                      <Button
-                        color="secondary"
-                        variant="contained"
-                        style={{ marginLeft: "15px" }}
-                      >
-                        <Link to="/finish" className={classes.linkStyle}>
-                          Finish
-                        </Link>
-                      </Button>
-                    </div>
-                  ) : (
-                    <div>
-                      <Button
-                        color="primary"
-                        variant="contained"
-                        onClick={handleNextQuestion}
-                      >
-                        Next
-                      </Button>
-                      <Button
-                        color="secondary"
-                        variant="contained"
-                        style={{ marginLeft: "15px" }}
-                        onClick={handleSubmit}
-                      >
-                        Submit
-                      </Button>
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-            </div>
-          </div>
+      <Nav></Nav>
+      <div className={classes.color}>
+        <div className={classes.center}>
+          <Card>
+            <CardContent>
+              <Typography variant="h5" style={{ textAlign: "center" }}>
+                Questions
+              </Typography>
+            </CardContent>
+            <Divider></Divider>
+            <CardContent>
+              <Ques id={question}></Ques>
+            </CardContent>
+            <CardContent>
+              {index == 9 ? (
+                <div>
+                  <Button color="primary" variant="contained" disabled>
+                    Next
+                  </Button>
+                  <Button
+                    color="secondary"
+                    variant="contained"
+                    style={{ marginLeft: "15px" }}
+                    onClick={handleSubmit}
+                  >
+                    Submit
+                  </Button>
+                  <Button
+                    color="secondary"
+                    variant="contained"
+                    style={{ marginLeft: "15px" }}
+                  >
+                    <Link to="/finish" className={classes.linkStyle}>
+                      Finish
+                    </Link>
+                  </Button>
+                </div>
+              ) : (
+                <div>
+                  <Button
+                    color="primary"
+                    variant="contained"
+                    onClick={handleNextQuestion}
+                  >
+                    Next
+                  </Button>
+                  <Button
+                    color="secondary"
+                    variant="contained"
+                    style={{ marginLeft: "15px" }}
+                    onClick={handleSubmit}
+                  >
+                    Submit
+                  </Button>
+                </div>
+              )}
+            </CardContent>
+          </Card>
         </div>
-      ) : (
-        <SignUp></SignUp>
-      )}
+      </div>
     </React.Fragment>
   );
 };

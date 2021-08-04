@@ -61,6 +61,7 @@ const SignUp = (props) => {
         userId:uid,
         username:username,
         profileImageURL:profileImageURL,
+        scores:[],
       });
       props.history.push("/");
     }

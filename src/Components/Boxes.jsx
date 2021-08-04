@@ -16,8 +16,12 @@ import Gk from "../Images/Gk.jpg";
 import Science from "../Images/Science.jpg";
 import Maths from "../Images/Maths.jpg";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../Context/Authprovider";
+import { useContext } from "react";
 
 const Boxes = () => {
+  const { currentUser } = useContext(AuthContext);
+
   const useStyle = makeStyles({
     center: {
       textAlign: "center",
@@ -65,12 +69,18 @@ const Boxes = () => {
             </CardContent>
             <CardActions className={classes.buttons}>
               <Button variant="contained" color="primary">
-                <Link
-                  className={classes.linkStyle}
-                  to={{ pathname: "/subjects", name: "Computer" }}
-                >
-                  Start Quiz
-                </Link>
+                {currentUser ? (
+                  <Link
+                    className={classes.linkStyle}
+                    to={{ pathname: "/subjects", name: "Computer" }}
+                  >
+                    Start Quiz
+                  </Link>
+                ) : (
+                  <Link to="signup" className={classes.linkStyle}>
+                    Start Quiz
+                  </Link>
+                )}
               </Button>
             </CardActions>
           </Card>
@@ -98,12 +108,18 @@ const Boxes = () => {
             </CardContent>
             <CardActions className={classes.buttons}>
               <Button variant="contained" color="primary">
-                <Link
-                  className={classes.linkStyle}
-                  to={{ pathname: "/subjects", name: "General Knowledge" }}
-                >
-                  Start Quiz
-                </Link>
+                {currentUser ? (
+                  <Link
+                    className={classes.linkStyle}
+                    to={{ pathname: "/subjects", name: "General Knowledge" }}
+                  >
+                    Start Quiz
+                  </Link>
+                ) : (
+                  <Link to="signup" className={classes.linkStyle}>
+                    Start Quiz
+                  </Link>
+                )}
               </Button>
             </CardActions>
           </Card>
@@ -126,12 +142,18 @@ const Boxes = () => {
             </CardContent>
             <CardActions className={classes.buttons}>
               <Button variant="contained" color="primary">
-                <Link
-                  className={classes.linkStyle}
-                  to={{ pathname: "/subjects", name: "Science and nature" }}
-                >
-                  Start Quiz
-                </Link>
+                {currentUser ? (
+                  <Link
+                    className={classes.linkStyle}
+                    to={{ pathname: "/subjects", name: "Science and nature" }}
+                  >
+                    Start Quiz
+                  </Link>
+                ) : (
+                  <Link to="signup" className={classes.linkStyle}>
+                    Start Quiz
+                  </Link>
+                )}
               </Button>
             </CardActions>
           </Card>
@@ -155,12 +177,18 @@ const Boxes = () => {
             </CardContent>
             <CardActions className={classes.buttons}>
               <Button variant="contained" color="primary">
-                <Link
-                  className={classes.linkStyle}
-                  to={{ pathname: "/subjects", name: "Mathematics" }}
-                >
-                  Start Quiz
-                </Link>
+                {currentUser ? (
+                  <Link
+                    className={classes.linkStyle}
+                    to={{ pathname: "/subjects", name: "Mathematics" }}
+                  >
+                    Start Quiz
+                  </Link>
+                ) : (
+                  <Link to="signup" className={classes.linkStyle}>
+                    Start Quiz
+                  </Link>
+                )}
               </Button>
             </CardActions>
           </Card>

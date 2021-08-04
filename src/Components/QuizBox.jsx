@@ -11,8 +11,12 @@ import {
 } from "@material-ui/core";
 import Cartoon from "../Images/Cartoon.jpg";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../Context/Authprovider";
+import { useContext } from "react";
 
 const QuizBox = () => {
+  const { currentUser } = useContext(AuthContext);
+
   const useStyle = makeStyles((theme) => ({
     font: {
       fontFamily: "cursive",
@@ -66,204 +70,306 @@ const QuizBox = () => {
           <Card variant="outlined" className={classes.card}>
             <CardContent>
               <Typography variant="h6">
-                <Link
-                  to={{ pathname: "/subjects", name: "Science and nature" }}
-                  className={classes.linkStyle}
-                >
-                  Science and nature
-                </Link>
+                {currentUser ? (
+                  <Link
+                    to={{ pathname: "/subjects", name: "Science and nature" }}
+                    className={classes.linkStyle}
+                  >
+                    Science and nature
+                  </Link>
+                ) : (
+                  <Link to="/signup" className={classes.linkStyle}>
+                    Science and nature
+                  </Link>
+                )}
               </Typography>
             </CardContent>
           </Card>
           <Card variant="outlined" className={classes.card}>
             <CardContent>
               <Typography variant="h6">
-                <Link
-                  to={{ pathname: "/subjects", name: "History" }}
-                  className={classes.linkStyle}
-                >
-                  History
-                </Link>
+                {currentUser ? (
+                  <Link
+                    to={{ pathname: "/subjects", name: "History" }}
+                    className={classes.linkStyle}
+                  >
+                    History
+                  </Link>
+                ) : (
+                  <Link to="/signup" className={classes.linkStyle}>
+                    History
+                  </Link>
+                )}
               </Typography>
             </CardContent>
           </Card>
           <Card variant="outlined" className={classes.card}>
             <CardContent>
               <Typography variant="h6">
-                <Link
-                  to={{ pathname: "/subjects", name: "Geography" }}
-                  className={classes.linkStyle}
-                >
-                  Geography
-                </Link>
+                {currentUser ? (
+                  <Link
+                    to={{ pathname: "/subjects", name: "Geography" }}
+                    className={classes.linkStyle}
+                  >
+                    Geography
+                  </Link>
+                ) : (
+                  <Link to="/signup" className={classes.linkStyle}>
+                    Geography
+                  </Link>
+                )}
               </Typography>
             </CardContent>
           </Card>
           <Card variant="outlined" className={classes.card}>
             <CardContent>
               <Typography variant="h6">
-                <Link
-                  to={{ pathname: "/subjects", name: "Politics" }}
-                  className={classes.linkStyle}
-                >
-                  Politics
-                </Link>
+                {currentUser ? (
+                  <Link
+                    to={{ pathname: "/subjects", name: "Politics" }}
+                    className={classes.linkStyle}
+                  >
+                    Politics
+                  </Link>
+                ) : (
+                  <Link to="/signup" className={classes.linkStyle}>
+                    Politics
+                  </Link>
+                )}
               </Typography>
             </CardContent>
           </Card>
           <Card variant="outlined" className={classes.card}>
             <CardContent>
               <Typography variant="h6">
-                <Link
-                  to={{ pathname: "/subjects", name: "Gadgets" }}
-                  className={classes.linkStyle}
-                >
-                  Gadgets
-                </Link>
+                {currentUser ? (
+                  <Link
+                    to={{ pathname: "/subjects", name: "Gadgets" }}
+                    className={classes.linkStyle}
+                  >
+                    Gadgets
+                  </Link>
+                ) : (
+                  <Link to="/signup" className={classes.linkStyle}>
+                    Gadgets
+                  </Link>
+                )}
               </Typography>
             </CardContent>
           </Card>
           <Card variant="outlined" className={classes.card}>
             <CardContent>
               <Typography variant="h6">
-                <Link
-                  to={{ pathname: "/subjects", name: "Art" }}
-                  className={classes.linkStyle}
-                >
-                  Art
-                </Link>
+                {currentUser ? (
+                  <Link
+                    to={{ pathname: "/subjects", name: "Art" }}
+                    className={classes.linkStyle}
+                  >
+                    Art
+                  </Link>
+                ) : (
+                  <Link to="/signup" className={classes.linkStyle}>
+                    Art
+                  </Link>
+                )}
               </Typography>
             </CardContent>
           </Card>
           <Card variant="outlined" className={classes.card}>
             <CardContent>
               <Typography variant="h6">
-                <Link
-                  to={{ pathname: "/subjects", name: "Mythology" }}
-                  className={classes.linkStyle}
-                >
-                  Mythology
-                </Link>
+                {currentUser ? (
+                  <Link
+                    to={{ pathname: "/subjects", name: "Mythology" }}
+                    className={classes.linkStyle}
+                  >
+                    Mythology
+                  </Link>
+                ) : (
+                  <Link to="/signup" className={classes.linkStyle}>
+                    Mythology
+                  </Link>
+                )}
               </Typography>
             </CardContent>
           </Card>
           <Card variant="outlined" className={classes.card}>
             <CardContent>
               <Typography variant="h6">
-                <Link
-                  to={{ pathname: "/subjects", name: "Sports" }}
-                  className={classes.linkStyle}
-                >
-                  Sports
-                </Link>
+                {currentUser ? (
+                  <Link
+                    to={{ pathname: "/subjects", name: "Sports" }}
+                    className={classes.linkStyle}
+                  >
+                    Sports
+                  </Link>
+                ) : (
+                  <Link to="/signup" className={classes.linkStyle}>
+                    Sports
+                  </Link>
+                )}
               </Typography>
             </CardContent>
           </Card>
           <Card variant="outlined" className={classes.card}>
             <CardContent>
               <Typography variant="h6">
-                <Link
-                  to={{ pathname: "/subjects", name: "Animals" }}
-                  className={classes.linkStyle}
-                >
-                  Animals
-                </Link>
+                {currentUser ? (
+                  <Link
+                    to={{ pathname: "/subjects", name: "Animals" }}
+                    className={classes.linkStyle}
+                  >
+                    Animals
+                  </Link>
+                ) : (
+                  <Link to="/signup" className={classes.linkStyle}>
+                    Animals
+                  </Link>
+                )}
               </Typography>
             </CardContent>
           </Card>
           <Card variant="outlined" className={classes.card}>
             <CardContent>
               <Typography variant="h6">
-                <Link
-                  to={{ pathname: "/subjects", name: "Vehicles" }}
-                  className={classes.linkStyle}
-                >
-                  Vehicles
-                </Link>
+                {currentUser ? (
+                  <Link
+                    to={{ pathname: "/subjects", name: "Vehicles" }}
+                    className={classes.linkStyle}
+                  >
+                    Vehicles
+                  </Link>
+                ) : (
+                  <Link to="/signup" className={classes.linkStyle}>
+                    Vehicles
+                  </Link>
+                )}
               </Typography>
             </CardContent>
           </Card>
           <Card variant="outlined" className={classes.card}>
             <CardContent>
               <Typography variant="h6">
-                <Link
-                  to={{ pathname: "/subjects", name: "Comics" }}
-                  className={classes.linkStyle}
-                >
-                  Comics
-                </Link>
+                {currentUser ? (
+                  <Link
+                    to={{ pathname: "/subjects", name: "Comics" }}
+                    className={classes.linkStyle}
+                  >
+                    Comics
+                  </Link>
+                ) : (
+                  <Link to="/signup" className={classes.linkStyle}>
+                    Comics
+                  </Link>
+                )}
               </Typography>
             </CardContent>
           </Card>
           <Card variant="outlined" className={classes.card}>
             <CardContent>
               <Typography variant="h6">
-                <Link
-                  to={{ pathname: "/subjects", name: "Books" }}
-                  className={classes.linkStyle}
-                >
-                  Books
-                </Link>
+                {currentUser ? (
+                  <Link
+                    to={{ pathname: "/subjects", name: "Books" }}
+                    className={classes.linkStyle}
+                  >
+                    Books
+                  </Link>
+                ) : (
+                  <Link to="/signup" className={classes.linkStyle}>
+                    Books
+                  </Link>
+                )}
               </Typography>
             </CardContent>
           </Card>
           <Card variant="outlined" className={classes.card}>
             <CardContent>
               <Typography variant="h6">
-                <Link
-                  to={{ pathname: "/subjects", name: "Video Games" }}
-                  className={classes.linkStyle}
-                >
-                  Video Games
-                </Link>
+                {currentUser ? (
+                  <Link
+                    to={{ pathname: "/subjects", name: "Video Games" }}
+                    className={classes.linkStyle}
+                  >
+                    Video Games
+                  </Link>
+                ) : (
+                  <Link to="/signup" className={classes.linkStyle}>
+                    Video Games
+                  </Link>
+                )}
               </Typography>
             </CardContent>
           </Card>
           <Card variant="outlined" className={classes.card}>
             <CardContent>
               <Typography variant="h6">
-                <Link
-                  to={{ pathname: "/subjects", name: "Board Games" }}
-                  className={classes.linkStyle}
-                >
-                  Board Games
-                </Link>
+                {currentUser ? (
+                  <Link
+                    to={{ pathname: "/subjects", name: "Board Games" }}
+                    className={classes.linkStyle}
+                  >
+                    Board Games
+                  </Link>
+                ) : (
+                  <Link to="/signup" className={classes.linkStyle}>
+                    Board Games
+                  </Link>
+                )}
               </Typography>
             </CardContent>
           </Card>
           <Card variant="outlined" className={classes.card}>
             <CardContent>
               <Typography variant="h6">
-                <Link
-                  to={{ pathname: "/subjects", name: "Cartoons" }}
-                  className={classes.linkStyle}
-                >
-                  Cartoons
-                </Link>
+                {currentUser ? (
+                  <Link
+                    to={{ pathname: "/subjects", name: "Cartoons" }}
+                    className={classes.linkStyle}
+                  >
+                    Cartoons
+                  </Link>
+                ) : (
+                  <Link to="/signup" className={classes.linkStyle}>
+                    Cartoons
+                  </Link>
+                )}
               </Typography>
             </CardContent>
           </Card>
           <Card variant="outlined" className={classes.card}>
             <CardContent>
               <Typography variant="h6">
-                <Link
-                  to={{ pathname: "/subjects", name: "Japenese Anime" }}
-                  className={classes.linkStyle}
-                >
-                  Japenese Anime
-                </Link>
+                {currentUser ? (
+                  <Link
+                    to={{ pathname: "/subjects", name: "Japenese Anime" }}
+                    className={classes.linkStyle}
+                  >
+                    Japenese Anime
+                  </Link>
+                ) : (
+                  <Link to="/signup" className={classes.linkStyle}>
+                    Art
+                  </Link>
+                )}
               </Typography>
             </CardContent>
           </Card>
           <Card variant="outlined" className={classes.card}>
             <CardContent>
               <Typography variant="h6">
-                <Link
-                  to={{ pathname: "/subjects", name: "Films" }}
-                  className={classes.linkStyle}
-                >
-                  Films
-                </Link>
+                {currentUser ? (
+                  <Link
+                    to={{ pathname: "/subjects", name: "Films" }}
+                    className={classes.linkStyle}
+                  >
+                    Films
+                  </Link>
+                ) : (
+                  <Link to="/signup" className={classes.linkStyle}>
+                    Films
+                  </Link>
+                )}
               </Typography>
             </CardContent>
           </Card>

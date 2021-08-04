@@ -65,11 +65,11 @@ const Container = () => {
           </Typography>
         </ThemeProvider>
         <Button variant="contained" color="secondary">
-          {/* {currentUser?( */}
+          {currentUser?(
             <Link className={classes.linkStyle} to="/demo">Try Demo Quiz</Link>
-          {/* ):( */}
-            {/* <Link className={classes.linkStyle} to="/login">Try Demo Quiz</Link> */}
-          {/* )} */}
+          ):(
+            <Link className={classes.linkStyle} to="/signup">Try Demo Quiz</Link>
+          )}
         </Button>
       </div>
       <div
