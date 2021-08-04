@@ -54,6 +54,11 @@ const Nav = (props) => {
       textDecoration: "none",
       color: "white",
     },
+    hover: {
+      "&:hover": {
+        cursor: "pointer",
+      },
+    },
   }));
 
   let classes = useStyles();
@@ -188,10 +193,7 @@ const Nav = (props) => {
             <LiveHelpOutlined></LiveHelpOutlined>
           </ListItemIcon>
           <ListItemText>
-            <Link
-              to="/help"
-              style={{ textDecoration: "none", color: "black" }}
-            >
+            <Link to="/help" style={{ textDecoration: "none", color: "black" }}>
               F.A.Q
             </Link>
           </ListItemText>
@@ -202,7 +204,9 @@ const Nav = (props) => {
             <ExitToAppOutlined></ExitToAppOutlined>
           </ListItemIcon>
           {currentUser ? (
-            <ListItemText onClick={handleLogOut}>Log Out</ListItemText>
+            <ListItemText onClick={handleLogOut} className={classes.hover}>
+              Log Out
+            </ListItemText>
           ) : (
             <ListItemText>
               <Link

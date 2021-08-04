@@ -13,8 +13,12 @@ import {
   Table,
   TableRow,
   withStyles,
+  Card,
+  CardContent,
+  CardMedia,
 } from "@material-ui/core";
 import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
+import Sad from "../Images/Sad.jpg";
 import { firebaseDB, firebaseStorage } from "../Config/firebase";
 import { AuthContext } from "../Context/Authprovider";
 
@@ -92,6 +96,9 @@ const Profile = () => {
       justifyContent: "center",
       margin: "20px",
     },
+    center: {
+      textAlign: "center",
+    },
   });
   let classes = useStyle();
 
@@ -120,7 +127,9 @@ const Profile = () => {
   return (
     <div>
       <Nav></Nav>
-      <div style={{ background: "#5d6cd7", position: "relative", height:"100vh" }}>
+      <div
+        style={{ background: "#5d6cd7", position: "relative", height: "100vh" }}
+      >
         <div className={classes.profileDiv}>
           <Avatar
             src={updatedProfile ? updatedProfile : profileImage}
@@ -171,38 +180,50 @@ const Profile = () => {
           </Typography>
         </div>
         <div className={classes.score}>
-          <TableContainer component={Paper} style={{ width: "30vw" }}>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <StyledTableCell
-                    align="center"
-                    style={{ fontWeight: "600", fontSize: "18px" }}
-                  >
-                    Subject
-                  </StyledTableCell>
-                  <StyledTableCell
-                    align="center"
-                    style={{ fontWeight: "600", fontSize: "18px" }}
-                  >
-                    Score
-                  </StyledTableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {score.map((score) => (
-                  <StyledTableRow key={score.subject}>
-                    <StyledTableCell align="center">
-                      {score.subject}
+          {score ? (
+            <TableContainer component={Paper} style={{ width: "30vw" }}>
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    <StyledTableCell
+                      align="center"
+                      style={{ fontWeight: "600", fontSize: "18px" }}
+                    >
+                      Subject
                     </StyledTableCell>
-                    <StyledTableCell align="center">
-                      {score.marks}
+                    <StyledTableCell
+                      align="center"
+                      style={{ fontWeight: "600", fontSize: "18px" }}
+                    >
+                      Score
                     </StyledTableCell>
-                  </StyledTableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {score.map((score) => (
+                    <StyledTableRow key={score.subject}>
+                      <StyledTableCell align="center">
+                        {score.subject}
+                      </StyledTableCell>
+                      <StyledTableCell align="center">
+                        {score.marks}
+                      </StyledTableCell>
+                    </StyledTableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          ) : (
+            <Card>
+              <CardContent>
+                <Typography variant="h4">You don't play any quiz</Typography>
+              </CardContent>
+              <CardMedia
+                image={Sad}
+                style={{ height: "5rem", backgroundSize: "contain" }}
+              ></CardMedia>
+            </Card>
+          )}
         </div>
       </div>
     </div>
@@ -210,10 +231,5 @@ const Profile = () => {
 };
 
 export default Profile;
-
-
-
-
-
 
 // class="fas fa-plus-circle"

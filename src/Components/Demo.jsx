@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import {
   Card,
   CardContent,
@@ -24,6 +24,7 @@ import {
   Divider,
 } from "@material-ui/core";
 import download from "../Images/download.png";
+import SignUp from "./SignUp";
 import Nav from "./Nav";
 import { Link, Redirect } from "react-router-dom";
 import { AuthContext } from "../Context/Authprovider";
@@ -32,11 +33,12 @@ let index = 0;
 let shuffledArray = [];
 let val = "";
 let score = 0;
-let newArr=[];
+let newArr = [];
 
 export const Demo = () => {
   const [questions, setQuestions] = useState([]);
   const [question, setQuestion] = useState({});
+  const { currentUser } = useContext(AuthContext);
 
   const useStyle = makeStyles({
     color: {
@@ -66,13 +68,13 @@ export const Demo = () => {
     setQuestion(data.results[0]);
   }, []);
 
-  String.prototype.deentitize = function(ret) {
-    ret = ret.replace(/&gt;/g, '>');
-    ret = ret.replace(/&lt;/g, '<');
+  String.prototype.deentitize = function (ret) {
+    ret = ret.replace(/&gt;/g, ">");
+    ret = ret.replace(/&lt;/g, "<");
     ret = ret.replace(/&quot;/g, '"');
     ret = ret.replace(/&apos;/g, "'");
-    ret = ret.replace(/&amp;/g, '&');
-    ret=ret.replace(/&#039;/g, "'");
+    ret = ret.replace(/&amp;/g, "&");
+    ret = ret.replace(/&#039;/g, "'");
     return ret;
   };
 
@@ -127,66 +129,72 @@ export const Demo = () => {
 
   return (
     <React.Fragment>
-      <Nav></Nav>
-      <div className={classes.color}>
-        <div className={classes.center}>
-          <Card>
-            <CardContent>
-              <Typography variant="h5" style={{ textAlign: "center" }}>
-                Questions
-              </Typography>
-            </CardContent>
-            <Divider></Divider>
-            <CardContent>
-              <Ques id={question}></Ques>
-            </CardContent>
-            <CardContent>
-              {index == 9 ? (
-                <div>
-                  <Button color="primary" variant="contained" disabled>
-                    Next
-                  </Button>
-                  <Button
-                    color="secondary"
-                    variant="contained"
-                    style={{ marginLeft: "15px" }}
-                    onClick={handleSubmit}
-                  >
-                    Submit
-                  </Button>
-                  <Button
-                    color="secondary"
-                    variant="contained"
-                    style={{ marginLeft: "15px" }}
-                  >
-                    <Link to="/finish" className={classes.linkStyle}>
-                      Finish
-                    </Link>
-                  </Button>
-                </div>
-              ) : (
-                <div>
-                  <Button
-                    color="primary"
-                    variant="contained"
-                    onClick={handleNextQuestion}
-                  >
-                    Next
-                  </Button>
-                  <Button
-                    color="secondary"
-                    variant="contained"
-                    style={{ marginLeft: "15px" }}
-                    onClick={handleSubmit}
-                  >
-                    Submit
-                  </Button>
-                </div>
-              )}
-            </CardContent>
-          </Card>
+      {currentUser ? (
+        <div>
+          <Nav></Nav>
+          <div className={classes.color}>
+            <div className={classes.center}>
+              <Card>
+                <CardContent>
+                  <Typography variant="h5" style={{ textAlign: "center" }}>
+                    Questions
+                  </Typography>
+                </CardContent>
+                <Divider></Divider>
+                <CardContent>
+                  <Ques id={question}></Ques>
+                </CardContent>
+                <CardContent>
+                  {index == 9 ? (
+                    <div>
+                      <Button color="primary" variant="contained" disabled>
+                        Next
+                      </Button>
+                      <Button
+                        color="secondary"
+                        variant="contained"
+                        style={{ marginLeft: "15px" }}
+                        onClick={handleSubmit}
+                      >
+                        Submit
+                      </Button>
+                      <Button
+                        color="secondary"
+                        variant="contained"
+                        style={{ marginLeft: "15px" }}
+                      >
+                        <Link to="/finish" className={classes.linkStyle}>
+                          Finish
+                        </Link>
+                      </Button>
+                    </div>
+                  ) : (
+                    <div>
+                      <Button
+                        color="primary"
+                        variant="contained"
+                        onClick={handleNextQuestion}
+                      >
+                        Next
+                      </Button>
+                      <Button
+                        color="secondary"
+                        variant="contained"
+                        style={{ marginLeft: "15px" }}
+                        onClick={handleSubmit}
+                      >
+                        Submit
+                      </Button>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            </div>
+          </div>
         </div>
-      </div>
+      ) : (
+        <SignUp></SignUp>
+      )}
     </React.Fragment>
   );
 };
@@ -219,7 +227,6 @@ export const Ques = (props) => {
   let classes = useStyle();
   val = value;
 
-
   return (
     <React.Fragment>
       <p className={classes.disp}>
@@ -238,12 +245,7 @@ export const Ques = (props) => {
             }}
           >
             {shuffledArray.map((option) => {
-              return (
-                <Options
-                  key={idx++}
-                  incorrect={option}
-                ></Options>
-              );
+              return <Options key={idx++} incorrect={option}></Options>;
             })}
           </RadioGroup>
         </FormControl>
@@ -273,8 +275,7 @@ export const Options = (props) => {
       value={String.prototype.deentitize(props.incorrect)}
       control={<Radio></Radio>}
       label={String.prototype.deentitize(props.incorrect)}
-    >
-    </FormControlLabel>
+    ></FormControlLabel>
   );
 };
 
